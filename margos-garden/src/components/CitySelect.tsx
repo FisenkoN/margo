@@ -17,11 +17,11 @@ const CitySelect = ({ onSelect }: Props) => {
           <button
             key={c.id}
             onClick={() => setSelected(c.id)}
-            className={`relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 
+            className={`relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 animate-fade-in
               ${
               selected === c.id
-                ? 'ring-4 ring-emerald-600 scale-105'
-                : 'hover:scale-105'
+                ? 'ring-4 ring-emerald-600 scale-105 ring-offset-2 ring-offset-emerald-100'
+                : 'hover:scale-105 hover:ring-2 hover:ring-emerald-400'
             }`}
             style={{ aspectRatio: '4/3' }}
           >
@@ -32,6 +32,21 @@ const CitySelect = ({ onSelect }: Props) => {
             />
 
             <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+
+            {selected === c.id && (
+              <div className="absolute inset-0 bg-emerald-700/40 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  className="w-12 h-12 text-white drop-shadow-md"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            )}
 
             <div className="relative z-10 flex flex-col justify-end h-full p-4">
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-inner">
@@ -50,7 +65,7 @@ const CitySelect = ({ onSelect }: Props) => {
             localStorage.setItem('selectedCity', selected);
             onSelect(selected);
           }}
-          className="mt-12 inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-14 rounded-full shadow-xl text-lg transition-transform duration-200 hover:scale-105"
+          className="mt-12 inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold py-3 px-14 rounded-full shadow-xl text-lg transition-transform duration-200 hover:scale-105"
         >
           Продовжити
           <svg
